@@ -37,36 +37,39 @@
 for its country code and that it passes checksum validation. The <code>Modulo97</code> class exposes the checksum validation code
 for other purposes, such as live input validation.</p>
 
-<p>The library is compatible for use in Android apps.</p>
+<p>The library is compatible for use in Android apps. It is in maintenance mode; I'll occasionally update it to the latest
+version of the IBAN registry, but I don't plan on developing any new features.</p>
+
+<p><img src="https://travis-ci.org/barend/java-iban.svg?branch=master" alt="Travis CI" title="Travis CI build status"></p>
 
 <h3>
-<a id="install" class="anchor" href="#install" aria-hidden="true"><span class="octicon octicon-link"></span></a>Install</h3>
+<a id="install" class="anchor" href="#install" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Install</h3>
 
 <p>Grab a package <a href="https://github.com/barend/java-iban/releases">from Github</a> or get it from Maven Central:</p>
 
 <h4>
-<a id="maven" class="anchor" href="#maven" aria-hidden="true"><span class="octicon octicon-link"></span></a>Maven</h4>
+<a id="maven" class="anchor" href="#maven" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Maven</h4>
 
-<div class="highlight highlight-xml"><pre>    &lt;<span class="pl-ent">dependency</span>&gt;
+<div class="highlight highlight-text-xml"><pre>    &lt;<span class="pl-ent">dependency</span>&gt;
         &lt;<span class="pl-ent">groupId</span>&gt;nl.garvelink.oss&lt;/<span class="pl-ent">groupId</span>&gt;
         &lt;<span class="pl-ent">artifactId</span>&gt;iban&lt;/<span class="pl-ent">artifactId</span>&gt;
-        &lt;<span class="pl-ent">version</span>&gt;1.3.0&lt;/<span class="pl-ent">version</span>&gt;
+        &lt;<span class="pl-ent">version</span>&gt;1.4.0&lt;/<span class="pl-ent">version</span>&gt;
     &lt;/<span class="pl-ent">dependency</span>&gt;</pre></div>
 
 <h4>
-<a id="gradle" class="anchor" href="#gradle" aria-hidden="true"><span class="octicon octicon-link"></span></a>Gradle</h4>
+<a id="gradle" class="anchor" href="#gradle" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Gradle</h4>
 
-<div class="highlight highlight-javascript"><pre>    dependencies {
-        compile <span class="pl-s"><span class="pl-pds">'</span>nl.garvelink.oss:iban:1.3.0<span class="pl-pds">'</span></span>
+<div class="highlight highlight-source-js"><pre>    dependencies {
+        compile <span class="pl-s"><span class="pl-pds">'</span>nl.garvelink.oss:iban:1.4.0<span class="pl-pds">'</span></span>
     }</pre></div>
 
 <h3>
-<a id="use" class="anchor" href="#use" aria-hidden="true"><span class="octicon octicon-link"></span></a>Use</h3>
+<a id="use" class="anchor" href="#use" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Use</h3>
 
 <p>Obtain an <code>IBAN</code> instance using one of the static factory methods: <code>valueOf( )</code> and <code>parse( )</code>. Methods throw
 <code>java.lang.IllegalArgumentException</code> on invalid input.</p>
 
-<div class="highlight highlight-java"><pre>    <span class="pl-c">// Obtain an instance of IBAN.</span>
+<div class="highlight highlight-source-java"><pre>    <span class="pl-c">// Obtain an instance of IBAN.</span>
     <span class="pl-smi">IBAN</span> iban <span class="pl-k">=</span> <span class="pl-c1">IBAN</span><span class="pl-k">.</span>valueOf( <span class="pl-s"><span class="pl-pds">"</span>NL91ABNA0417164300<span class="pl-pds">"</span></span> );
 
     <span class="pl-c">// toString() emits standard formatting, toPlainString() is compact.</span>
@@ -113,7 +116,7 @@ for other purposes, such as live input validation.</p>
     <span class="pl-smi">String</span> branchId <span class="pl-k">=</span> <span class="pl-smi">IBANFieldsCompat</span><span class="pl-k">.</span>getBranchIdentifier( iban );</pre></div>
 
 <h3>
-<a id="design-choices" class="anchor" href="#design-choices" aria-hidden="true"><span class="octicon octicon-link"></span></a>Design Choices</h3>
+<a id="design-choices" class="anchor" href="#design-choices" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Design Choices</h3>
 
 <p>I like the Joda-Time library and I try to follow the same design principles. I'm explicitly targetting Android, which
 rules out some modern Java language constructs. I'm trying to keep the library as simple as I can.</p>
@@ -143,10 +146,24 @@ extracting Bank and Branch identifiers, which lives in the <code>IBANFields</cod
 </ul>
 
 <h3>
-<a id="version-history" class="anchor" href="#version-history" aria-hidden="true"><span class="octicon octicon-link"></span></a>Version history</h3>
+<a id="version-history" class="anchor" href="#version-history" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Version history</h3>
 
 <h4>
-<a id="13-july-5th-2015" class="anchor" href="#13-july-5th-2015" aria-hidden="true"><span class="octicon octicon-link"></span></a>1.3: July 5th, 2015</h4>
+<a id="14-may-4th-2016" class="anchor" href="#14-may-4th-2016" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>1.4: May 4th, 2016</h4>
+
+<ul>
+<li>Update to version 66 of the IBAN registry
+
+<ul>
+<li>Adds Sao Tome e Principe (ST)</li>
+<li>Adds bank identifier format for Ukraine (UA)</li>
+<li>Adds Seychelles (SC)</li>
+</ul>
+</li>
+</ul>
+
+<h4>
+<a id="13-july-5th-2015" class="anchor" href="#13-july-5th-2015" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>1.3: July 5th, 2015</h4>
 
 <ul>
 <li>Update to version 58 of the IBAN registry
@@ -174,7 +191,7 @@ sub-encode the branch ID. The library returns all four digits as the bank identi
 </ul>
 
 <h4>
-<a id="12-september-1st-2014" class="anchor" href="#12-september-1st-2014" aria-hidden="true"><span class="octicon octicon-link"></span></a>1.2: September 1st, 2014</h4>
+<a id="12-september-1st-2014" class="anchor" href="#12-september-1st-2014" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>1.2: September 1st, 2014</h4>
 
 <ul>
 <li>Adds query method <code>IBAN.isSEPA()</code>.</li>
@@ -188,7 +205,7 @@ sub-encode the branch ID. The library returns all four digits as the bank identi
 </ul>
 
 <h4>
-<a id="11-october-25th-2013" class="anchor" href="#11-october-25th-2013" aria-hidden="true"><span class="octicon octicon-link"></span></a>1.1: October 25th, 2013</h4>
+<a id="11-october-25th-2013" class="anchor" href="#11-october-25th-2013" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>1.1: October 25th, 2013</h4>
 
 <ul>
 <li>Moves country information from <code>IBAN</code> into separate class <code>CountryCodes</code>
@@ -211,7 +228,7 @@ Senegal, Tunisia, Ukraine, United Arab Emirates</li>
 </ul>
 
 <h4>
-<a id="10-may-30-2013" class="anchor" href="#10-may-30-2013" aria-hidden="true"><span class="octicon octicon-link"></span></a>1.0: May 30, 2013</h4>
+<a id="10-may-30-2013" class="anchor" href="#10-may-30-2013" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>1.0: May 30, 2013</h4>
 
 <ul>
 <li>Initial release, IBAN value type.</li>
@@ -228,10 +245,10 @@ Spain, Sweden, Switzerland, Turkey, United Kingdom</li>
 </ul>
 
 <h3>
-<a id="references" class="anchor" href="#references" aria-hidden="true"><span class="octicon octicon-link"></span></a>References</h3>
+<a id="references" class="anchor" href="#references" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>References</h3>
 
 <ul>
-<li><a href="http://www.swift.com/dsp/resources/documents/IBAN_Registry.pdf">http://www.swift.com/dsp/resources/documents/IBAN_Registry.pdf</a></li>
+<li><a href="https://www.swift.com/sites/default/files/resources/swift_standards_ibanregistry.pdf">https://www.swift.com/sites/default/files/resources/swift_standards_ibanregistry.pdf</a></li>
 <li><a href="http://en.wikipedia.org/wiki/IBAN">http://en.wikipedia.org/wiki/IBAN</a></li>
 <li><a href="http://www.ecbs.org/iban.htm">http://www.ecbs.org/iban.htm</a></li>
 <li><a href="http://www.tbg5-finance.org/ibanabout.shtml">http://www.tbg5-finance.org/ibanabout.shtml</a></li>
@@ -240,12 +257,12 @@ Spain, Sweden, Switzerland, Turkey, United Kingdom</li>
 </ul>
 
 <h3>
-<a id="alternatives" class="anchor" href="#alternatives" aria-hidden="true"><span class="octicon octicon-link"></span></a>Alternatives</h3>
+<a id="alternatives" class="anchor" href="#alternatives" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Alternatives</h3>
 
 <p>If you're looking for a more comprehensive IBAN library, you may prefer <a href="https://github.com/arturmkrtchyan/iban4j">iban4j</a>.</p>
 
 <h3>
-<a id="copyright-and-license" class="anchor" href="#copyright-and-license" aria-hidden="true"><span class="octicon octicon-link"></span></a>Copyright and License</h3>
+<a id="copyright-and-license" class="anchor" href="#copyright-and-license" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Copyright and License</h3>
 
 <p>Copyright 2015 Barend Garvelink</p>
 
